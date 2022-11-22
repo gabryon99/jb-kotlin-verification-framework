@@ -13,25 +13,25 @@
 
 Taking the following Kotlin code as a base:
 
-```
-sealed class ast.Expr
+```kotlin
+sealed class Expr
 
-class ast.Block(vararg val exprs: ast.Expr) : ast.Expr()
+class Block(vararg val exprs: Expr) : Expr()
 
-class ast.Const(val value: Int) : ast.Expr()
-class ast.Var(val name: String) : ast.Expr()
-class ast.Let(val variable: ast.Var, val value: ast.Expr) : ast.Expr()
-class ast.Eq(val left: ast.Expr, val right: ast.Expr) : ast.Expr()
-class ast.NEq(val left: ast.Expr, val right: ast.Expr) : ast.Expr()
-class ast.If(val cond: ast.Expr, val thenExpr: ast.Expr, val elseExpr: ast.Expr? = null) : ast.Expr()
-class ast.Plus(val left: ast.Expr, val right: ast.Expr) : ast.Expr()
-class ast.Minus(val left: ast.Expr, val right: ast.Expr) : ast.Expr()
-class ast.Mul(val left: ast.Expr, val right: ast.Expr) : ast.Expr()
+class Const(val value: Int) : Expr()
+class Var(val name: String) : Expr()
+class Let(val variable: Var, val value: Expr) : Expr()
+class Eq(val left: Expr, val right: Expr) : Expr()
+class NEq(val left: Expr, val right: Expr) : Expr()
+class If(val cond: Expr, val thenExpr: Expr, val elseExpr: Expr? = null) : Expr()
+class Plus(val left: Expr, val right: Expr) : Expr()
+class Minus(val left: Expr, val right: Expr) : Expr()
+class Mul(val left: Expr, val right: Expr) : Expr()
 ```
 
 The following example Kotlin function:
 
-```
+```kotlin
 fun foobar(a: Int, b: Int): Int {
     var x = 1
     var y = 0
@@ -47,42 +47,42 @@ fun foobar(a: Int, b: Int): Int {
 
 Could be represented as the following AST (abstract syntax tree):
 
-```
-val fooBarAst = ast.Block(
-    ast.Let(ast.Var("x"), ast.Const(1)),
-    ast.Let(ast.Var("y"), ast.Const(0)),
-    ast.If(ast.NEq(ast.Var("a"), ast.Const(0)),
-        ast.Block(
-            ast.Let(ast.Var("y"), ast.Plus(ast.Const(3), ast.Var("x"))),
-            ast.If( ast.Eq(ast.Var("b"), ast.Const(0)),
-                ast.Let(ast.Var("x"), ast.Mul(ast.Const(2), ast.Plus(ast.Var("a"), ast.Var("b")))),
+```kotlin
+val fooBarAst = Expr.Block(
+    Expr.Let(Expr.Var("x"), Expr.Const(1)),
+    Expr.Let(Expr.Var("y"), Expr.Const(0)),
+    Expr.If(Expr.NEq(Expr.Var("a"), Expr.Const(0)),
+        Expr.Block(
+            Expr.Let(Expr.Var("y"), Expr.Plus(Expr.Const(3), Expr.Var("x"))),
+            Expr.If( Expr.Eq(Expr.Var("b"), Expr.Const(0)),
+                Expr.Let(Expr.Var("x"), Expr.Mul(Expr.Const(2), Expr.Plus(Expr.Var("a"), Expr.Var("b")))),
             )
         )
     ),
-    ast.Minus(ast.Var("x"), ast.Var("y"))
+    Expr.Minus(Expr.Var("x"), Expr.Var("y"))
 )
 ```
 
 Write a function that takes such AST representation and transform it to a **symbolic forward execution tree**, with nodes containing the following values:
 
 - `expr` - next expression to execute
-- `S` - symbolic store containing `ast.Let` expressions over variables, constants or symbolic values (see below)
-- `Pi` - path constraints store, containing comparison expressions (`ast.Eq`, `ast.NEq`) that are encountered on the branch points for the current path
+- `S` - symbolic store containing `Expr.Let` expressions over variables, constants or symbolic values (see below)
+- `Pi` - path constraints store, containing comparison expressions (`Expr.Eq`, `Expr.NEq`) that are encountered on the branch points for the current path
 
-You can reuse the `ast.Expr` hierarchy for the `S` and `Pi`, but you'll need one more element for the symbolic values:
+You can reuse the `Expr.Expr` hierarchy for the `S` and `Pi`, but you'll need one more element for the symbolic values:
 
-```
-class SymVal(val name: String) : ast.Expr()
+```kotlin
+class SymVal(val name: String) : Expr()
 ```
 
 You can use the following class to represent the tree nodes:
 
-```
+```kotlin
 class ExecTreeNode(
     val children: List<ExecTreeNode>,
-    val nextExpr: ast.Expr,
-    val S: List<ast.Expr>,
-    val Pi: List<ast.Expr>
+    val nextExpr: Expr,
+    val S: List<Expr>,
+    val Pi: List<Expr>
 )
 ```
 
