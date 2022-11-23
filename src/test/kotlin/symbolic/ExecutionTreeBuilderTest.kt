@@ -6,6 +6,10 @@ import visualizer.GraphvizVisualizer
 
 internal class ExecutionTreeBuilderTest {
 
+    fun printGraphvizCode(tree: ExecutionTreeNode) {
+        println(GraphvizVisualizer.drawTree(tree))
+    }
+
     @Test
     fun testPaperExample() {
 
@@ -26,8 +30,7 @@ internal class ExecutionTreeBuilderTest {
             Expr.Minus(Expr.Var("x"), Expr.Var("y"))
         )
 
-        val tree = ExecutionTreeBuilder.astToExecutionTree(fooBarAst)
-        println(GraphvizVisualizer.drawTree(tree))
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(fooBarAst))
     }
 
     @Test
@@ -58,8 +61,7 @@ internal class ExecutionTreeBuilderTest {
                 Expr.Let(Expr.Var("y"), Expr.Const(2))),
             Expr.Plus(Expr.Var("x"), Expr.Var("y"))
         )
-        val tree = ExecutionTreeBuilder.astToExecutionTree(ast)
-        println(GraphvizVisualizer.drawTree(tree))
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
     }
 
     @Test
@@ -74,8 +76,7 @@ internal class ExecutionTreeBuilderTest {
                 Expr.Let(Expr.Var("y"), Expr.Const(2))),
             Expr.Plus(Expr.Var("x"), Expr.Var("y"))
         )
-        val tree = ExecutionTreeBuilder.astToExecutionTree(ast)
-        println(GraphvizVisualizer.drawTree(tree))
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
     }
 
     @Test
@@ -90,8 +91,7 @@ internal class ExecutionTreeBuilderTest {
                 Expr.Let(Expr.Var("y"), Expr.Const(2))),
             Expr.Plus(Expr.Var("x"), Expr.Var("y"))
         )
-        val tree = ExecutionTreeBuilder.astToExecutionTree(ast)
-        println(GraphvizVisualizer.drawTree(tree))
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
     }
 
     @Test
@@ -104,9 +104,45 @@ internal class ExecutionTreeBuilderTest {
                 Expr.Let(Expr.Var("b"), Expr.Const(2))),
             Expr.Plus(Expr.Var("a"), Expr.Var("b"))
         )
-        val tree = ExecutionTreeBuilder.astToExecutionTree(ast)
-        println(GraphvizVisualizer.drawTree(tree))
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
     }
 
+    @Test
+    fun testBerkeley() {
+        // Code taken from: https://inst.eecs.berkeley.edu/~cs261/fa17/scribe/SymbolicExecution.pdf
+        val ast = Expr.Block(
+            Expr.Let(Expr.Var("x"), Expr.SymVal("x0")),
+            Expr.Let(Expr.Var("y"), Expr.SymVal("y0")),
+            Expr.Let(Expr.Var("z"), Expr.Mul(Expr.Const(2), Expr.Var("x"))),
+            Expr.Let(Expr.Var("k"), Expr.Const(3)),
+            Expr.If(Expr.Comparison.Gt(Expr.Var("z"), Expr.Var("k")),
+                Expr.Block(
+                    Expr.If(Expr.Comparison.Lt(Expr.Var("y"), Expr.Var("z")),
+                        Expr.Const(-1), // EXIT_FAILURE
+                        Expr.Comparison.NEq(Expr.Var("y"), Expr.Var("z"))
+                    )
+                )
+            ),
+            Expr.Const(0) // Since the function shown is void, we append a fake `return 0`
+        )
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
+    }
+
+    @Test
+    fun testWashington() {
+        // Code taken from: https://courses.cs.washington.edu/courses/cse403/16au/lectures/L16.pdf
+        val ast = Expr.Block(
+            Expr.Let(Expr.Var("x"), Expr.SymVal("x0")),
+            Expr.Let(Expr.Var("y"), Expr.SymVal("y0")),
+            Expr.If(Expr.Comparison.Gt(Expr.Var("x"), Expr.Var("y")), Expr.Block(
+                Expr.Let(Expr.Var("x"), Expr.Plus(Expr.Var("x"), Expr.Var("y"))),
+                Expr.Let(Expr.Var("y"), Expr.Minus(Expr.Var("x"), Expr.Var("y"))),
+                Expr.Let(Expr.Var("x"), Expr.Minus(Expr.Var("x"), Expr.Var("y"))),
+                Expr.If(Expr.Comparison.Gt(Expr.Minus(Expr.Var("x"), Expr.Var("y")), Expr.Const(0)), Expr.Const(0))
+            )),
+            Expr.Const(1)
+        )
+        printGraphvizCode(ExecutionTreeBuilder.astToExecutionTree(ast))
+    }
 
 }
