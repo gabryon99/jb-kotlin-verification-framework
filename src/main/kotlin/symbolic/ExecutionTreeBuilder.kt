@@ -14,16 +14,16 @@ class ExecutionTreeBuilder {
         return when (currentExpr) {
             is Expr.Block -> {
 
-                val newQueue = ArrayDeque<Expr>()
+                val newDeque = ArrayDeque<Expr>()
 
-                newQueue.addAll(currentExpr.exprs)
+                newDeque.addAll(currentExpr.exprs)
 
                 // Drain block expressions to current expression queue
                 if (!exprDeque.isEmpty()) {
-                    newQueue.addAll(exprDeque)
+                    newDeque.addAll(exprDeque)
                 }
 
-                buildNode(newQueue.removeFirst(), newQueue, store, constraints)
+                buildNode(newDeque.removeFirst(), newDeque, store, constraints)
             }
             is Expr.Let -> {
 
@@ -40,25 +40,25 @@ class ExecutionTreeBuilder {
             is Expr.If -> {
 
                 val children = mutableListOf<ExecutionTreeNode>().apply {
-                    val thenQueue = ArrayDeque<Expr>().apply {
+                    val thenDeque = ArrayDeque<Expr>().apply {
                         addFirst(currentExpr.thenExpr)
                         addAll(exprDeque)
                     }
                     val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.Comparison
-                    val child = buildNode(thenQueue.removeFirst(), thenQueue, store, constraints.addConstraint(reducedExpr))
+                    val child = buildNode(thenDeque.removeFirst(), thenDeque, store, constraints.addConstraint(reducedExpr))
                     add(child)
                 }
 
                 if (currentExpr.elseExpr != null) {
 
-                    val elseQueue = ArrayDeque<Expr>().apply {
+                    val elseDeque = ArrayDeque<Expr>().apply {
                         add(currentExpr.elseExpr)
                         addAll(exprDeque)
                     }
 
                     if (currentExpr.cond is Expr.Comparison) {
                         val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate()) as Expr.Comparison
-                        children.add(buildNode(elseQueue.removeFirst(), elseQueue, store, constraints.addConstraint(reducedExpr)))
+                        children.add(buildNode(elseDeque.removeFirst(), elseDeque, store, constraints.addConstraint(reducedExpr)))
                     }
 
                 }
