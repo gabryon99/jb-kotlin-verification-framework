@@ -20,11 +20,16 @@ class SymbolicStore(private val vars: List<Expr.Let>) {
      */
     fun substitute(let: Expr.Let): SymbolicStore {
 
-        val copy = vars.toMutableList()
-        copy.removeIf {
-            it.variable.name == let.variable.name
+        if (let.variable.name.isEmpty()) {
+            return this
         }
-        copy.add(let)
+
+        val copy = vars.toMutableList().apply{
+            removeIf {
+                it.variable.name == let.variable.name
+            }
+            add(let)
+        }
 
         return SymbolicStore(copy)
     }
@@ -41,5 +46,7 @@ class SymbolicStore(private val vars: List<Expr.Let>) {
     /***
      * Given a variable expression, return its associated value
      */
-    fun lookup(e: Expr.Var): Expr.Let = vars.find { e.name == it.variable.name }!!
+    fun lookup(e: Expr.Var): Expr.Let {
+        return vars.find { e.name == it.variable.name } ?: Expr.Let(Expr.Var(""), Expr.Const(0))
+    }
 }
