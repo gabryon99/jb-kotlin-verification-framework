@@ -15,6 +15,18 @@ class ExprReducer(private val store: SymbolicStore) {
             is Expr.Comparison.NEq -> {
                 return Expr.Comparison.NEq(eval(e.left), eval(e.right))
             }
+            is Expr.Comparison.Lt -> {
+                return Expr.Comparison.Lt(eval(e.left), eval(e.right))
+            }
+            is Expr.Comparison.Gt -> {
+                return Expr.Comparison.Gt(eval(e.left), eval(e.right))
+            }
+            is Expr.Comparison.Lte -> {
+                return Expr.Comparison.Lte(eval(e.left), eval(e.right))
+            }
+            is Expr.Comparison.Gte -> {
+                return Expr.Comparison.Gte(eval(e.left), eval(e.right))
+            }
             is Expr.Plus -> {
                 val lhs = eval(e.left)
                 val rhs = eval(e.right)

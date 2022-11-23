@@ -55,13 +55,32 @@ sealed class Expr {
 
         abstract fun negate(): Expr
 
+        class Gt(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): Lte = Lte(left, right)
+            override fun toString(): String = "$left \\> $right"
+        }
+
+        class Lt(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): Gte = Gte(left, right)
+            override fun toString(): String = "$left \\< $right"
+        }
+
+        class Gte(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): Lt = Lt(left, right)
+            override fun toString(): String = "$left \\>= $right"
+        }
+
+        class Lte(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): Gt = Gt(left, right)
+            override fun toString(): String = "$left \\<= $right"
+        }
+
         /***
          * An equal comparison between two expressions.
          */
         class Eq(val left: Expr, val right: Expr) : Comparison() {
             override fun negate(): NEq = NEq(left, right)
             override fun toString(): String = "$left == $right"
-
         }
 
         /***
@@ -69,7 +88,6 @@ sealed class Expr {
          */
         class NEq(val left: Expr, val right: Expr) : Comparison() {
             override fun negate(): Eq = Eq(left, right)
-
             override fun toString(): String = "$left ≠ $right"
         }
     }
