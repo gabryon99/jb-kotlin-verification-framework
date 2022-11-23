@@ -25,7 +25,7 @@ The code is structured in three packages:
 
 ### How the Execution Tree is built
 
-The **symbolic forward execution tree** is mainly built by the `ExecutionTreeBuilder.buildNode` function, that works via
+The **symbolic forward execution tree** is mainly built by the `ExecutionTreeBuilder.buildNode` function, which works via
 pattern matching on the given expression. To the first function call, four parameters are passed:
 - `currentExpr`: the expression to which to build the node
 - `exprDeque`: a double ended queue for the remaining expressions to build nodes
@@ -34,6 +34,6 @@ pattern matching on the given expression. To the first function call, four param
 
 Therefore, when `currentExpr` is matched we can have four cases:
 1. We're matching an `Expr.Block`, if the `exprDeque` is not empty, we insert all the expressions contained inside the block to a new deque, and we continue the node construction with the new deque.
-2. We're matching an `Expr.Let`,  we create a new `SymbolicStore` containing the new info given from the current expression, and we pass it to the new node child. It may happen, as shown in `ExecutionTreeBuilderTest::testBerkeley` and `ExecutionTreeBuilderTest::testWashington`, that an existing symbolic value can be updated. Therefore, we update the current constraints to reflect this event, removing the old constrain related to the variable.
-3. We're marching an `Expr.If`, this is the case where the execution path split, therefore it has to be handled carefully. To summarize it, we create two new deques (one for the `then` branch, the other one for `else`). These new deques, have a copy of the current expression's deque, used for building the children. Notice that, the `Expr.If`, as written before, add a new constraints to the current `constraints` data structure.
+2. We're matching an `Expr.Let`,  we create a new `SymbolicStore` containing the new info given from the current expression, and we pass it to the new child node. It may happen, as shown in `ExecutionTreeBuilderTest::testBerkeley` and `ExecutionTreeBuilderTest::testWashington`, that an existing symbolic value can be updated. Therefore, we update the current constraints to reflect this event, removing the old constrain related to the variable.
+3. We're matching an `Expr.If`, this is the case where the execution path split, therefore it has to be handled carefully. To summarize it, we create two new deques (one for the `then` branch, the other one for `else`). These new deques, have a copy of the current expression's deque, used for building the children. Notice that, the `Expr.If`, as written before add a new constraint to the current `constraints` data structure.
 4. We're matching the remaining expressions, and we just return a new `ExecutionTreeNode`
