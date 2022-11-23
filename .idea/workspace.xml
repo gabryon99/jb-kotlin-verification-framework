@@ -4,29 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f787e504-4e16-4df7-9869-d75457e36d54" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ast/Expr.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ast/ExprReducer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/symbolic/ExecutionTreeBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/symbolic/ExecutionTreeNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/symbolic/PathConstraints.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/symbolic/SymbolicStore.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/visualizer/Dot.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/visualizer/GraphvizVisualizer.kt" afterDir="false" />
+    <list default="true" id="f787e504-4e16-4df7-9869-d75457e36d54" name="Changes" comment="Add Berkeley and Washington tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TASK.md" beforeDir="false" afterPath="$PROJECT_DIR$/TASK.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +18,22 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -56,55 +47,153 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/gabryon/repos/formal_verification_framework",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gabryon/repos/formal_verification_framework&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="symbolic" />
+    </key>
   </component>
-  <component name="RunManager" selected="Kotlin.ExecutionTreeBuilder">
-    <configuration name="formal_verification_framework [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.ExecutionTreeBuilderTest.testWashington">
+    <configuration name="ExecutionTreeBuilderTest.testBerkeley" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="dependencies" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;symbolic.ExecutionTreeBuilderTest.testBerkeley&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ExecutionTreeBuilder" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="symbolic.ExecutionTreeBuilder" />
-      <module name="formal_verification_framework.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ExecutionTreeBuilderTest.testLessOrEqualThan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;symbolic.ExecutionTreeBuilderTest.testLessOrEqualThan&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ExecutionTreeBuilderTest.testPaperExample" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;symbolic.ExecutionTreeBuilderTest.testPaperExample&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ExecutionTreeBuilderTest.testUpdateConstraints" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;symbolic.ExecutionTreeBuilderTest.testUpdateConstraints&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ExecutionTreeBuilderTest.testWashington" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;symbolic.ExecutionTreeBuilderTest.testWashington&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.ExecutionTreeBuilder" />
-        <item itemvalue="Gradle.formal_verification_framework [dependencies]" />
+        <item itemvalue="Gradle.ExecutionTreeBuilderTest.testWashington" />
+        <item itemvalue="Gradle.ExecutionTreeBuilderTest.testBerkeley" />
+        <item itemvalue="Gradle.ExecutionTreeBuilderTest.testPaperExample" />
+        <item itemvalue="Gradle.ExecutionTreeBuilderTest.testUpdateConstraints" />
+        <item itemvalue="Gradle.ExecutionTreeBuilderTest.testLessOrEqualThan" />
       </list>
     </recent_temporary>
   </component>
@@ -118,8 +207,150 @@
       <updated>1669153617418</updated>
       <workItem from="1669153618689" duration="546000" />
       <workItem from="1669154252070" duration="39000" />
-      <workItem from="1669154521962" duration="3655000" />
+      <workItem from="1669154521962" duration="8683000" />
+      <workItem from="1669225953272" duration="6967000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1669158369183</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158369183</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add README.md">
+      <created>1669158409321</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158409321</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update README.md">
+      <created>1669158433250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158433250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update README.md">
+      <created>1669158518470</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158518470</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add expression class">
+      <created>1669158563641</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158563641</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add execution tree node">
+      <created>1669158582251</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158582251</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add PathConstraints and SymbolicStore">
+      <created>1669158608035</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158608035</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add ExecutionTreeBuilder">
+      <created>1669158619943</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669158619943</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add Graphviz &quot;pretty-printer&quot;">
+      <created>1669201730891</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669201730891</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add some comments to the code">
+      <created>1669204630740</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669204630740</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update README.md">
+      <created>1669208591294</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669208591294</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Remove double bang (!!) in favor of an empty variable">
+      <created>1669228538850</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669228538850</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Aggregate Comparison expressions in sealed class Expr.Comparison">
+      <created>1669228619172</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669228619172</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update Task.md">
+      <created>1669228634602</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669228634602</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add test class for the ExecutionTreeBuilder">
+      <created>1669229023471</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669229023471</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add Gt, Gte, Lt and Lte comparison operators">
+      <created>1669231538955</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669231538955</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add tests for new comparison operators">
+      <created>1669232563201</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669232563201</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add PathConstraints substitute for updating constraints">
+      <created>1669232680677</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1669232680677</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add test for PathConstraints.substitute">
+      <created>1669232712824</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1669232712824</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add Berkeley and Washington tests">
+      <created>1669233993693</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1669233993693</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,5 +366,36 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Add README.md" />
+    <MESSAGE value="Add expression class" />
+    <MESSAGE value="Add execution tree node" />
+    <MESSAGE value="Add PathConstraints and SymbolicStore" />
+    <MESSAGE value="Add ExecutionTreeBuilder" />
+    <MESSAGE value="Add Graphviz &quot;pretty-printer&quot;" />
+    <MESSAGE value="Add some comments to the code" />
+    <MESSAGE value="Update README.md" />
+    <MESSAGE value="Remove double bang (!!) in favor of an empty variable" />
+    <MESSAGE value="Aggregate Comparison expressions in sealed class Expr.Comparison" />
+    <MESSAGE value="Update Task.md" />
+    <MESSAGE value="Add test class for the ExecutionTreeBuilder" />
+    <MESSAGE value="Add Gt, Gte, Lt and Lte comparison operators" />
+    <MESSAGE value="Add tests for new comparison operators" />
+    <MESSAGE value="Add PathConstraints substitute for updating constraints" />
+    <MESSAGE value="Add test for PathConstraints.substitute" />
+    <MESSAGE value="Add Berkeley and Washington tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Berkeley and Washington tests" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -100,6 +100,6 @@ with all instances of the variable replaced with another expression.
 
 ### Bonus tasks
 - [x] Implement a pretty printer for the execution tree.
-- [ ] Write simple tests with the given example AST, comparing the results with pretty printed execution tree.
-- [ ] Extend the `Expr` hierarchy with more arithmetic and logic operators, write tests that use new operators.
+- [x] Write simple tests with the given example AST, comparing the results with pretty printed execution tree.
+- [x] Extend the `Expr` hierarchy with more arithmetic and logic operators, write tests that use new operators.
 - [ ] **Extra bonus** - connect an SMT solver to the project and evaluate constraints as described in the paper above.
