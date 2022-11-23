@@ -21,6 +21,9 @@ class ExecutionTreeBuilder {
                         Expr.If( Expr.Eq(Expr.Var("b"), Expr.Const(0)),
                             Expr.Let(Expr.Var("x"), Expr.Mul(Expr.Const(2), Expr.Plus(Expr.Var("a"), Expr.Var("b")))),
                         )
+                    ),
+                    Expr.Block(
+                        Expr.Let(Expr.Var("z"), Expr.Const(42)),
                     )
                 ),
                 Expr.Minus(Expr.Var("x"), Expr.Var("y"))

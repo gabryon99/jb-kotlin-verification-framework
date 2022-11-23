@@ -14,6 +14,10 @@ class SymbolicStore(private val vars: List<Expr.Let>) {
         }
     }
 
+    /**
+     * Given a let expressions, returns a new SymbolicStore
+     * where the occurrence of given let are replaced with the existing one.
+     */
     fun substitute(let: Expr.Let): SymbolicStore {
 
         val copy = vars.toMutableList()
@@ -34,5 +38,8 @@ class SymbolicStore(private val vars: List<Expr.Let>) {
         return "\\{$exprListString\\}"
     }
 
+    /***
+     * Given a variable expression, return its associated value
+     */
     fun lookup(e: Expr.Var): Expr.Let = vars.find { e.name == it.variable.name }!!
 }

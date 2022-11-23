@@ -31,10 +31,8 @@ sealed class Expr {
     class If(val cond: Expr, val thenExpr: Expr, val elseExpr: Expr? = null) : Expr() {
         override fun toString(): String {
 
-            var str = "if ($cond) "
-            if (elseExpr != null) {
-                str += "else"
-            }
+            var str = "if ($cond)"
+            if (elseExpr != null) str += " else"
 
             return str
         }
