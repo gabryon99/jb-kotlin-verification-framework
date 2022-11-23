@@ -9,11 +9,11 @@ class ExprReducer(private val store: SymbolicStore) {
             is Expr.Var -> {
                 store.lookup(e).value
             }
-            is Expr.Eq -> {
-                return Expr.Eq(eval(e.left), eval(e.right))
+            is Expr.Comparison.Eq -> {
+                return Expr.Comparison.Eq(eval(e.left), eval(e.right))
             }
-            is Expr.NEq -> {
-                return Expr.NEq(eval(e.left), eval(e.right))
+            is Expr.Comparison.NEq -> {
+                return Expr.Comparison.NEq(eval(e.left), eval(e.right))
             }
             is Expr.Plus -> {
                 val lhs = eval(e.left)

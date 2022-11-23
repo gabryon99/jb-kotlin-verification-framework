@@ -2,35 +2,11 @@ package symbolic
 
 import ast.Expr
 import ast.ExprReducer
-import visualizer.GraphvizVisualizer
 
 class ExecutionTreeBuilder {
 
     companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-
-            val fooBarAst = Expr.Block(
-                Expr.Let(Expr.Var("a"), Expr.SymVal("α")),
-                Expr.Let(Expr.Var("b"), Expr.SymVal("β")),
-                Expr.Let(Expr.Var("x"), Expr.Const(1)),
-                Expr.Let(Expr.Var("y"), Expr.Const(0)),
-                Expr.If(Expr.NEq(Expr.Var("a"), Expr.Const(0)),
-                    Expr.Block(
-                        Expr.Let(Expr.Var("y"), Expr.Plus(Expr.Const(3), Expr.Var("x"))),
-                        Expr.If( Expr.Eq(Expr.Var("b"), Expr.Const(0)),
-                            Expr.Let(Expr.Var("x"), Expr.Mul(Expr.Const(2), Expr.Plus(Expr.Var("a"), Expr.Var("b")))),
-                        )
-                    ),
-                    Expr.Block(
-                        Expr.Let(Expr.Var("z"), Expr.Const(42)),
-                    )
-                ),
-                Expr.Minus(Expr.Var("x"), Expr.Var("y"))
-            )
-            val tree = ExecutionTreeBuilder().buildNode(fooBarAst, ArrayDeque(), SymbolicStore.empty(), PathConstraints.empty())
-            println(GraphvizVisualizer.drawTree(tree))
-        }
+        fun astToExecutionTree(ast: Expr): ExecutionTreeNode = ExecutionTreeBuilder().buildNode(ast, ArrayDeque(), SymbolicStore.empty(), PathConstraints.empty())
     }
 
     fun buildNode(currentExpr: Expr, exprDeque: ArrayDeque<Expr>, store: SymbolicStore, constraints: PathConstraints): ExecutionTreeNode {
@@ -61,7 +37,7 @@ class ExecutionTreeBuilder {
                 ExecutionTreeNode(children, currentExpr, store, constraints)
             }
             is Expr.If -> {
-                
+
                 val children = mutableListOf<ExecutionTreeNode>().apply {
                     val thenQueue = ArrayDeque<Expr>().apply {
                         addFirst(currentExpr.thenExpr)
@@ -79,26 +55,16 @@ class ExecutionTreeBuilder {
                         addAll(exprDeque)
                     }
 
-                    if (currentExpr.cond is Expr.Eq) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.Eq
-                        val child = buildNode(elseQueue.removeFirst(), elseQueue, store, constraints.addConstraint(reducedExpr.negate()))
-                        children.add(child)
-                    }
-                    else if (currentExpr.cond is Expr.NEq) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.NEq
-                        val child = buildNode(elseQueue.removeFirst(), elseQueue, store, constraints.addConstraint(reducedExpr.negate()))
-                        children.add(child)
+                    if (currentExpr.cond is Expr.Comparison) {
+                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate())
+                        children.add(buildNode(elseQueue.removeFirst(), elseQueue, store, constraints.addConstraint(reducedExpr)))
                     }
 
                 }
                 else {
-                    if (currentExpr.cond is Expr.Eq) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.Eq
-                        children.add(buildNode(exprDeque.removeFirst(), exprDeque, store, constraints.addConstraint(reducedExpr.negate())))
-                    }
-                    else if (currentExpr.cond is Expr.NEq) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.NEq
-                        children.add(buildNode(exprDeque.removeFirst(), exprDeque, store, constraints.addConstraint(reducedExpr.negate())))
+                    if (currentExpr.cond is Expr.Comparison) {
+                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate())
+                        children.add(buildNode(exprDeque.removeFirst(), exprDeque, store, constraints.addConstraint(reducedExpr)))
                     }
                 }
 

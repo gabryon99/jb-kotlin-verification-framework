@@ -4,7 +4,6 @@ import ast.Expr
 import io.github.rchowell.dotlin.DotNodeShape
 import io.github.rchowell.dotlin.digraph
 import symbolic.ExecutionTreeNode
-import java.lang.StrictMath.abs
 
 class GraphvizVisualizer {
 
@@ -19,7 +18,7 @@ class GraphvizVisualizer {
                     labeljust = "c"
                 }
 
-                var count: Int = 0
+                var count = 0
 
                 val deque = ArrayDeque<Element>().apply {
                     add(Element(count, null, root))
@@ -44,10 +43,7 @@ class GraphvizVisualizer {
                                 parent.expr.cond
                             } else {
                                 when (parent.expr.cond) {
-                                    is Expr.Eq -> {
-                                        parent.expr.cond.negate()
-                                    }
-                                    is Expr.NEq -> {
+                                    is Expr.Comparison -> {
                                         parent.expr.cond.negate()
                                     }
                                     else -> {

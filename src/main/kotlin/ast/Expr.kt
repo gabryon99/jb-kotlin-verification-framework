@@ -50,31 +50,30 @@ sealed class Expr {
     class Var(val name: String) : Expr() {
         override fun toString(): String = name
     }
-    /***
-     * An equal comparison between two expressions.
-     */
-    class Eq(val left: Expr, val right: Expr) : Expr() {
-        fun negate(): NEq {
-            return NEq(left, right)
+
+    sealed class Comparison: Expr() {
+
+        abstract fun negate(): Expr
+
+        /***
+         * An equal comparison between two expressions.
+         */
+        class Eq(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): NEq = NEq(left, right)
+            override fun toString(): String = "$left == $right"
+
         }
 
-        override fun toString(): String {
-            return "$left == $right"
+        /***
+         * A not-equal comparison between two expressions.
+         */
+        class NEq(val left: Expr, val right: Expr) : Comparison() {
+            override fun negate(): Eq = Eq(left, right)
+
+            override fun toString(): String = "$left ≠ $right"
         }
     }
 
-    /***
-     * A not-equal comparison between two expressions.
-     */
-    class NEq(val left: Expr, val right: Expr) : Expr() {
-        fun negate(): Eq {
-            return Eq(left, right)
-        }
-
-        override fun toString(): String {
-            return "$left ≠ $right"
-        }
-    }
 
     /***
      * Addition expression.
