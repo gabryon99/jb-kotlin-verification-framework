@@ -38,6 +38,10 @@ Therefore, when `currentExpr` is matched we can have four cases:
 3. We're matching an `Expr.If`, this is the case where the execution path split, therefore it has to be handled carefully. To summarize it, we create two new deques (one for the `then` branch, the other one for `else`). These new deques, have a copy of the current expression's deque, used for building the children. Notice that, the `Expr.If`, as written before add a new constraint to the current `constraints` data structure.
 4. We're matching the remaining expressions, and we just return a new `ExecutionTreeNode`
 
+### Additional Expressions
+
+Equal and NotEqual expressions have been grouped inside a new sealed class `Expr.Comparison`. Moreover, *greater than* (or equal) and *less than* (or equal) have been added to this class, with respective tests.
+
 ### Pretty Printing
 
 The code uses `Dotlin` to generate `Graphviz` output to be rendered, similar to the one inside Section 1.1 of "*A Survey of Symbolic Execution Techniques*". The code can be found inside the class `GraphvizVisualizer`.
