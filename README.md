@@ -42,7 +42,7 @@ Therefore, when `currentExpr` is matched we can have four cases:
 
 The code uses `Dotlin` to generate `Graphviz` output to be rendered, similar to the one inside Section 1.1 of "*A Survey of Symbolic Execution Techniques*". The code can be found inside the class `GraphvizVisualizer`.
 
-Here are some SVG examples rendered by (Graphviz Online)[https://dreampuf.github.io/GraphvizOnline].
+Here are some SVG examples rendered by [Graphviz Online](https://dreampuf.github.io/GraphvizOnline).
 
 **testPaperExample**:
 ![foorBar](https://user-images.githubusercontent.com/14114916/203646800-1c51b7e5-ffd4-4bb1-af0d-3a4ce5b6577d.svg)
