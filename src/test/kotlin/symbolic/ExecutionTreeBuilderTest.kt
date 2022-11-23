@@ -94,5 +94,19 @@ internal class ExecutionTreeBuilderTest {
         println(GraphvizVisualizer.drawTree(tree))
     }
 
+    @Test
+    fun testUpdateConstraints() {
+        val ast = Expr.Block(
+            Expr.Let(Expr.Var("a"), Expr.SymVal("α")),
+            Expr.Let(Expr.Var("b"), Expr.SymVal("β")),
+            Expr.If(Expr.Comparison.Lte(Expr.Var("a"), Expr.Var("b")),
+                Expr.Let(Expr.Var("a"), Expr.Const(40)),
+                Expr.Let(Expr.Var("b"), Expr.Const(2))),
+            Expr.Plus(Expr.Var("a"), Expr.Var("b"))
+        )
+        val tree = ExecutionTreeBuilder.astToExecutionTree(ast)
+        println(GraphvizVisualizer.drawTree(tree))
+    }
+
 
 }
