@@ -30,7 +30,8 @@ class ExecutionTreeBuilder {
                 val children = mutableListOf<ExecutionTreeNode>()
                 if (!exprDeque.isEmpty()) {
                     val newExpr = ExprReducer(store).eval(currentExpr) as Expr.Let
-                    val child = buildNode(exprDeque.removeFirst(), exprDeque, store.substitute(newExpr), constraints)
+                    val newConstraints = constraints.substitute(newExpr, store.lookup(currentExpr.variable))
+                    val child = buildNode(exprDeque.removeFirst(), exprDeque, store.substitute(newExpr), newConstraints)
                     children.add(child)
                 }
 
@@ -43,7 +44,7 @@ class ExecutionTreeBuilder {
                         addFirst(currentExpr.thenExpr)
                         addAll(exprDeque)
                     }
-                    val reducedExpr = ExprReducer(store).eval(currentExpr.cond)
+                    val reducedExpr = ExprReducer(store).eval(currentExpr.cond) as Expr.Comparison
                     val child = buildNode(thenQueue.removeFirst(), thenQueue, store, constraints.addConstraint(reducedExpr))
                     add(child)
                 }
@@ -56,14 +57,14 @@ class ExecutionTreeBuilder {
                     }
 
                     if (currentExpr.cond is Expr.Comparison) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate())
+                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate()) as Expr.Comparison
                         children.add(buildNode(elseQueue.removeFirst(), elseQueue, store, constraints.addConstraint(reducedExpr)))
                     }
 
                 }
                 else {
                     if (currentExpr.cond is Expr.Comparison) {
-                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate())
+                        val reducedExpr = ExprReducer(store).eval(currentExpr.cond.negate()) as Expr.Comparison
                         children.add(buildNode(exprDeque.removeFirst(), exprDeque, store, constraints.addConstraint(reducedExpr)))
                     }
                 }
